@@ -1,1 +1,33 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package cmc.edu.vn.chapter1;
+
+class Test<T> {
+    private T value;
+
+    public void set(T t) {
+        this.value = t;
+    }
+
+    public T get() {
+        return this.value;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        // Kiểm thử với Integer
+        Test<Integer> integerTest = new Test<>();
+        integerTest.set(100);
+        System.out.println("Giá trị Integer: " + integerTest.get());
+
+        // Kiểm thử với String
+        Test<String> stringTest = new Test<>();
+        stringTest.set("Chào mừng bạn đến với NetBeans!");
+        System.out.println("Giá trị String: " + stringTest.get());
+    }
+}
 
