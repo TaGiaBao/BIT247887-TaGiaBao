@@ -22,7 +22,7 @@ public class Main {
        
         Test<Integer> integerTest = new Test<>();
         integerTest.set(100);
-        System.out.println("Giá trị Integer: " + integerTest.get());
+        System.out.println("Integer: " + integerTest.get());
 
        
         Test<String> stringTest = new Test<>();
