@@ -1,1 +1,38 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package cmc.edu.vn.chapter4;
+
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        ArrayList<String> fruits = new ArrayList<>();
+        fruits.add("Buoi");
+        fruits.add("Oi");
+        fruits.add("Xoai");
+
+
+        fruits.add(1, "Bom");
+
+     
+        int index = fruits.indexOf("Oi");
+        if (index != -1) {
+            fruits.set(index, "Cam");
+        }
+
+       
+        if (fruits.contains("Tao")) {
+            System.out.println("Tao ton tai.");
+        } else {
+            System.out.println("Tao khong ton tai.");
+        }
+
+      
+        System.out.println("List Fruits: " + fruits);
+    }
+}
 
