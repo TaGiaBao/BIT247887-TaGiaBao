@@ -1,1 +1,50 @@
+package Java;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
+public class ha {
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+
+        System.out.println("Main thread starts");
+        CompletableFuture<Void> future =
+            CompletableFuture.supplyAsync(() -> {
+                sleep(1000);
+                return "hello";
+            })
+
+         
+            .thenApply(result -> {
+                System.out.println("thenApply: " + result);
+                return result.toUpperCase();
+            })
+
+         
+            .thenAccept(result ->
+                System.out.println("thenAccept: " + result)
+            )
+
+          
+            .thenRun(() ->
+                System.out.println("thenRun: All tasks finished")
+            );
+
+        System.out.println("Main thread continues...");
+
+       
+        future.join();
+        System.out.println("After join()");
+
+       
+        future.get();
+        System.out.println("After get()");
+    }
+
+    private static void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
