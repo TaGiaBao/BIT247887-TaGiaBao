@@ -1,1 +1,46 @@
 
+package Baitap;
+
+interface PaymentStrategy {
+    void pay(int amount);
+}
+
+class CreditCardPayment implements PaymentStrategy {
+    @Override
+    public void pay(int amount) { System.out.println("Thanh toán " + amount + "đ qua Thẻ tín dụng."); }
+}
+
+class PayPalPayment implements PaymentStrategy {
+    @Override
+    public void pay(int amount) { System.out.println("Thanh toán " + amount + "đ qua PayPal."); }
+}
+
+class ShoppingCart {
+    private PaymentStrategy strategy;
+
+    public void setPaymentStrategy(PaymentStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void checkout(int amount) {
+        if (strategy == null) {
+            System.out.println("Vui lòng chọn phương thức thanh toán!");
+        } else {
+            strategy.pay(amount);
+        }
+    }
+}
+
+public class Bai4 {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart();
+
+        // Chọn thanh toán thẻ
+        cart.setPaymentStrategy(new CreditCardPayment());
+        cart.checkout(500000);
+
+        // Đổi sang PayPal ngay lúc chạy
+        cart.setPaymentStrategy(new PayPalPayment());
+        cart.checkout(200000);
+    }
+}
