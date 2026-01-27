@@ -1,30 +1,29 @@
 
 package Baitap;
 
-// Các subsystem phức tạp
-class TV { void turnOn() { System.out.println("Tivi đã bật."); } }
-class SoundSystem { void setVolume(int level) { System.out.println("Loa âm lượng: " + level); } }
-class DVDPlayer { void playMovie() { System.out.println("Đang chiếu phim DVD..."); } }
 
-// Facade class
+class TV { void turnOn() { System.out.println("Tivi bat."); } }
+class SoundSystem { void setVolume(int level) { System.out.println("Loa tang: " + level); } }
+class DVDPlayer { void playMovie() { System.out.println("dang chieu..."); } }
+
+
 class HomeTheaterFacade {
     private TV tv = new TV();
     private SoundSystem sound = new SoundSystem();
     private DVDPlayer dvd = new DVDPlayer();
 
     public void watchMovie() {
-        System.out.println("Đang chuẩn bị rạp hát tại gia...");
+        System.out.println("dang chuan bi...");
         tv.turnOn();
         sound.setVolume(50);
         dvd.playMovie();
-        System.out.println("Chúc bạn xem phim vui vẻ!");
+        System.out.println("Hello!");
     }
 }
 
 public class Bai3 {
     public static void main(String[] args) {
         HomeTheaterFacade homeTheater = new HomeTheaterFacade();
-        // Chỉ cần gọi 1 hàm duy nhất thay vì bật từng thiết bị
         homeTheater.watchMovie();
     }
 }
