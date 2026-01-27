@@ -1,1 +1,43 @@
 
+package Baitap;
+
+interface MessageService {
+    void sendMessage(String message);
+}
+
+class EmailService implements MessageService {
+    @Override
+    public void sendMessage(String message) { System.out.println("Email Service: " + message); }
+}
+
+class SMSService implements MessageService {
+    @Override
+    public void sendMessage(String message) { System.out.println("SMS Service: " + message); }
+}
+
+class Notification {
+    private MessageService service;
+
+    // Setter Injection
+    public void setService(MessageService service) {
+        this.service = service;
+    }
+
+    public void send(String msg) {
+        this.service.sendMessage(msg);
+    }
+}
+
+public class Bai5 {
+    public static void main(String[] args) {
+        Notification note = new Notification();
+
+        // Inject Email
+        note.setService(new EmailService());
+        note.send("Chào mừng đến với hệ thống!");
+
+        // Inject SMS
+        note.setService(new SMSService());
+        note.send("Mã xác thực của bạn là 9999");
+    }
+}
