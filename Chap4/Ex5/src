@@ -1,1 +1,16 @@
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
+public class Bai5 {
+    public static void main(String[] args) {
+        // 1. Supplier trả về số ngẫu nhiên 0-100
+        Supplier<Double> randomSup = () -> Math.random() * 100;
+
+        // 2. Consumer in ra định dạng yêu cầu
+        Consumer<Double> printCons = d -> System.out.printf("Số may mắn: [%.2f]%n", d);
+
+        // 3. Kết hợp
+        double value = randomSup.get();
+        printCons.accept(value);
+    }
+}
