@@ -4,7 +4,7 @@ public class Bai1_Select {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/hoc_java";
         String user = "root";
-        String pass = "password";
+        String pass = "";
 
         try (Connection conn = DriverManager.getConnection(url, user, pass);
              Statement stmt = conn.createStatement();
