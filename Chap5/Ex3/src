@@ -1,1 +1,18 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
+public class Bai3_SaveProduct {
+    public static void main(String[] args) {
+        SessionFactory factory = new Configuration().configure().addAnnotatedClass(Product.class).buildSessionFactory();
+        Session session = factory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+            Product p = new Product("Laptop", 1500); // Đề yêu cầu
+            session.save(p);
+            session.getTransaction().commit();
+            System.out.println("Lưu sản phẩm thành công!");
+        } finally { factory.close(); }
+    }
+}
