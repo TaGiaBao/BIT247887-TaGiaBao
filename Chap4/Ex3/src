@@ -1,1 +1,11 @@
+import java.util.function.Predicate;
 
+public class Bai3 {
+    public static void main(String[] args) {
+        // Viết Lambda cho Predicate
+        Predicate<Integer> isEven = n -> n % 2 == 0;
+
+        int number = 10;
+        System.out.println(number + " có phải số chẵn không? " + isEven.test(number));
+    }
+}
