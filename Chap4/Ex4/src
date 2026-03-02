@@ -1,1 +1,19 @@
+import java.util.*;
+import java.util.function.Function;
 
+public class Bai4 {
+    public static void main(String[] args) {
+        List<String> moneyStrings = Arrays.asList("$10", "$20", "$50");
+        List<Integer> prices = new ArrayList<>();
+
+        // Định nghĩa logic: Cắt dấu $ và ép kiểu
+        Function<String, Integer> converter = s -> Integer.parseInt(s.replace("$", ""));
+
+        // Áp dụng cho từng phần tử
+        for (String s : moneyStrings) {
+            prices.add(converter.apply(s));
+        }
+
+        System.out.println("Danh sách số nguyên: " + prices);
+    }
+}
