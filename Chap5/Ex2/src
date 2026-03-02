@@ -1,39 +1,25 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.Scanner;
 
-public class UserDisplay {
-    // Thông tin kết nối (Hãy sửa theo DB của bạn)
-    private static final String URL = "jdbc:mysql://localhost:3306/ten_database";
-    private static final String USER = "root";
-    private static final String PASS = "password";
-
+public class Bai2_Delete {
     public static void main(String[] args) {
-        // Câu lệnh SQL truy vấn
-        String sql = "SELECT id, username, email FROM users";
+        String url = "jdbc:mysql://localhost:3306/ten_db";
+        String user = "root";
+        String pass = "password";
 
-        // Sử dụng try-with-resources để tự động đóng kết nối
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhập ID user cần xóa: ");
+        int idToDelete = sc.nextInt();
 
-            System.out.println("Danh sách người dùng:");
-            System.out.println("---------------------------------");
+        try (Connection conn = DriverManager.getConnection(url, user, pass);
+             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM users WHERE id = ?")) {
 
-            while (rs.next()) {
-                // Lấy dữ liệu từng cột theo yêu cầu bài toán
-                int id = rs.getInt("id");
-                String username = rs.getString("username");
-                String email = rs.getString("email");
+            pstmt.setInt(1, idToDelete);
+            int rows = pstmt.executeUpdate();
 
-                // In ra theo định dạng: ID - Username - Email
-                System.out.printf("%d - %s - %s%n", id, username, email);
-            }
-
-        } catch (Exception e) {
-            System.err.println("Lỗi kết nối cơ sở dữ liệu!");
-            e.printStackTrace();
-        }
+            if (rows > 0) System.out.println("Xóa thành công!");
+            else System.out.println("Không tìm thấy user để xóa");
+            
+        } catch (SQLException e) { e.printStackTrace(); }
     }
 }
