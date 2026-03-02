@@ -1,1 +1,25 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import java.util.List;
 
+public class Bai4_HqlQuery {
+    public static void main(String[] args) {
+        SessionFactory factory = new Configuration().configure().addAnnotatedClass(Product.class).buildSessionFactory();
+        Session session = factory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+            // 1. Sử dụng ngôn ngữ HQL (Lưu ý Product là tên Class)
+            String hql = "FROM Product p WHERE p.price > 1000";
+            
+            // 2. Sử dụng createQuery và getResultList
+            List<Product> products = session.createQuery(hql, Product.class).getResultList();
+
+            for (Product p : products) {
+                System.out.println(p.getName() + " | Price: " + p.getPrice());
+            }
+            session.getTransaction().commit();
+        } finally { factory.close(); }
+    }
+}
