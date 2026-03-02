@@ -1,1 +1,21 @@
+// Bước 1: Tạo Functional Interface
+@FunctionalInterface
+interface MathOperation {
+    int compute(int a, int b);
+}
 
+public class Bai1 {
+    public static void main(String[] args) {
+        // Bước 2: Triển khai bằng Lambda
+        MathOperation add = (a, b) -> a + b;
+        MathOperation subtract = (a, b) -> a - b;
+        MathOperation multiply = (a, b) -> a * b;
+        MathOperation divide = (a, b) -> (b != 0) ? a / b : 0;
+
+        // Bước 3: Chạy và in ví dụ
+        System.out.println("Cộng: " + add.compute(10, 5));
+        System.out.println("Trừ: " + subtract.compute(10, 5));
+        System.out.println("Nhân: " + multiply.compute(10, 5));
+        System.out.println("Chia: " + divide.compute(10, 5));
+    }
+}
